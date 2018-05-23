@@ -12,10 +12,18 @@ namespace DotNetCoreDemo
             Console.WriteLine("initialising...");
 
             //change to "myhost" to "localhost" if executed from VS directly
-            IPHostEntry ipHostInfo = Dns.GetHostEntry("myhost");
-            IPAddress ipAddress = ipHostInfo.AddressList[0];
+            IPAddress ipAddress = null;
+            IPHostEntry ipHostInfo = Dns.GetHostEntry(Dns.GetHostName());
+            foreach (var address in ipHostInfo.AddressList)
+            {
+                if (address.AddressFamily == AddressFamily.InterNetwork)
+                {
+                    ipAddress = address;
+                    break;
+                }
+            }
+            
             IPEndPoint localEndPoint = new IPEndPoint(ipAddress, 9000);
-
             Socket listener = new Socket(ipAddress.AddressFamily,
                   SocketType.Stream, ProtocolType.Tcp);
             
