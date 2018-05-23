@@ -1,6 +1,6 @@
 # .Net Core Socket Demo using docker
 
-Show a simple example on how .net core application may be executed/compiled on Linux running inside docker container.
+Shows a simple example on how .net core application may be executed/compiled on Linux running inside docker container.
 
 When running the container an application is started which opens a socket on port 9000. It is possible to connect over a telnet client to that port using the IP address of the docker machine and send different characters. When sending *shift + q* then the hole concatenated text is echoed back to client.
 
