@@ -1,8 +1,10 @@
 # .Net Core Socket Demo using docker
 
-Shows a simple example on how .net core application may be executed/compiled on Linux running inside docker container.
+Shows a simple example how a .net core application may be executed/compiled on Linux running inside docker container.
 
-When running the container an application is started which opens a socket on port 9000. It is possible to connect over a telnet client to that port using the IP address of the docker machine and send different characters. When sending *shift + q* then the hole concatenated text is echoed back to client.
+When running the container an application is started which opens a socket on port 9000. It is possible to connect over a telnet client to that port using the IP address of the docker machine and sending ACII  characters. When finally sending *shift + q* the whole concatenated text is echoed back to client and right after the server is shutted down.
+
+The docker example illustrates a development environment. Thus when transitioning to a productive business application the process of building and running the container needs to be changed.
 
 ## Required Installations
 
@@ -18,7 +20,7 @@ Before running the container it is necessary to execute
 ./build.sh
 ```
 
-When that script is executed the application is build using the "dotnet" command. Afterwards the docker container is provisioned in order to host the application.
+When that script is executed it is build the visual studio solution using the "dotnet" command. Afterwards the docker container is provisioned in order to host the application.
 
 ## Running the Application
 
