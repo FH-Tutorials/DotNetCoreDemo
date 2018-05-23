@@ -14,6 +14,8 @@ namespace DotNetCoreDemo
             //change to "myhost" to "localhost" if executed from VS directly
             IPAddress ipAddress = null;
             IPHostEntry ipHostInfo = Dns.GetHostEntry(Dns.GetHostName());
+			
+			//picking the first suitable IP address
             foreach (var address in ipHostInfo.AddressList)
             {
                 if (address.AddressFamily == AddressFamily.InterNetwork)
@@ -23,12 +25,14 @@ namespace DotNetCoreDemo
                 }
             }
             
+			//prepare endpoint and socket
             IPEndPoint localEndPoint = new IPEndPoint(ipAddress, 9000);
             Socket listener = new Socket(ipAddress.AddressFamily,
                   SocketType.Stream, ProtocolType.Tcp);
             
             Console.WriteLine("Waiting for connections on " + localEndPoint);
             
+			//bind and accept
             listener.Bind(localEndPoint);
             listener.Listen(1);
             Socket handler = listener.Accept();
@@ -36,6 +40,7 @@ namespace DotNetCoreDemo
             String data = "";
             Console.WriteLine("Press 'Q' to quit");
 
+			//loop while exit character has been typed
             while (data.IndexOf("Q") <= -1)
             {
                 byte[] bytes = new byte[1024];
@@ -45,8 +50,10 @@ namespace DotNetCoreDemo
                 data += c;
             }
 
+			
             Console.WriteLine("Text received : {0}", data);
             
+			//echo back the complete message and die
             byte[] msg = Encoding.ASCII.GetBytes(data);
             handler.Send(msg);
             
@@ -54,7 +61,6 @@ namespace DotNetCoreDemo
             handler.Close();
             
             Console.WriteLine("Closing the listener...");
-            Console.ReadKey();
         }
     }
 }

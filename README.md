@@ -28,4 +28,4 @@ When the previous build has been execute successfully it is possible to run the 
 ./run.sh
 ```
 
-In there the docker container is started, the ports exposed and folder of the application (located on the host system) shared into the docker-container which gets the host name "myhost". 
+The script starts the docker container and exposes the port 9000. The folder of the application (located on the host system) is shared into the docker-container. 
