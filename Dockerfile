@@ -1,13 +1,11 @@
-# use docker mono container from hub
-#FROM mono
+# use dotnet core with dotnet CLI-Tool
 FROM microsoft/dotnet
-# TODO
-# compile
 
+# install some helper tools
 RUN apt-get update
 RUN apt-get install -y telnet net-tools
 
 EXPOSE 9000
 
-# run
+# execute application located in app folder
 ENTRYPOINT ["dotnet", "run", "--project", "/app/DotNetCoreDemo"]
