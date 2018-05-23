@@ -10,4 +10,4 @@ RUN apt-get install -y telnet net-tools
 EXPOSE 9000
 
 # run
-#ENTRYPOINT ["mono", "/app/DotNetCoreDemo/bin/Release/netcoreapp2.0/DotNetCoreDemo.dll"]
+ENTRYPOINT ["dotnet", "run", "--project", "/app/DotNetCoreDemo"]
